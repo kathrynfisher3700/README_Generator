@@ -30,20 +30,31 @@ inquirer
       name: 'contributions',
     },
     {
-      type: 'input',
+      type: 'checkbox',
       message: 'What type of licensing?',
       name: 'license',
+      choices: ['MIT', 'Apache 2.0', 'BSD','Mozilla Public', 'other', 'none' ],
     },
     {
       type: 'input',
       message: 'List any test instructions.',
       name: 'test',
     },
+    {
+      type: 'input',
+      message: 'What is your GitHub username?',
+      name: 'GitHub',
+    },
+    {
+      type: 'input',
+      message: 'What is your email?',
+      name: 'email',
+    },
 
 
   ])
   .then((response) => {
-    const {title, description, installation, usage, contributions, license, test} = response
+    const {title, description, installation, usage, contributions, license, test, GitHub, email} = response
 
     fs.writeFile('README.md', 
     `# ${title}
@@ -63,15 +74,19 @@ inquirer
     
     ## Usage
     ${usage}
+
     ##License
     ${license}
+
     ##Contributing
     ${contributions}
+
     #Tests
     ${test}
+
     ##Questions
-    
-    
+    [Checkout my GitHub profile here: ${GitHub}](https://github.com/${GitHub})
+    Have additional questions? Shoot me an email at ${email}.
     `
 
     , (err) => err ? console.error(err) : console.log('Thank You!'))
