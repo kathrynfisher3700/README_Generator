@@ -1,6 +1,5 @@
 const fs = require('fs');
 const inquirer = require('inquirer');
-const { title } = require('process');
 
 inquirer
   .prompt([
@@ -56,45 +55,49 @@ inquirer
   .then((response) => {
     const {title, description, installation, usage, contributions, license, test, GitHub, email} = response
 
-    fs.writeFile('README.md', 
-    `# ${title}
+    fs.writeFile('README.md', `
+# ${title}
 
-    ## Description
-    ${description}
+## Description
 
-    ## Table of Contents
-      [Installation](installation)
-      [Usage](usage)
-      [License](license)
-      [Contributing](contributing)
-      [Tests](tests)
-      
-    ## Installation
-    ${installation}
-    
-    ## Usage
-    ${usage}
+${description}
 
-    ##License
-    ${license}
+## Table of Contents
 
-    ##Contributing
-    ${contributions}
+[Installation](#installation)
 
-    #Tests
-    ${test}
+[Usage](#usage)
 
-    ##Questions
-    [Checkout my GitHub profile here: ${GitHub}](https://github.com/${GitHub})
-    Have additional questions? Shoot me an email at ${email}.
+[License](#license)
+
+[Contributing](#contributing)
+
+[Tests](#tests)
+
+## Installation
+
+${installation}
+
+## Usage
+
+${usage}
+
+##  License
+
+${license}
+
+##  Contributing
+
+${contributions}
+
+##  Tests
+${test}
+
+##  Questions
+[Checkout my GitHub profile here: ${GitHub}](https://github.com/${GitHub})
+
+Have additional questions? Shoot me an email at ${email}.
     `
-
     , (err) => err ? console.error(err) : console.log('Thank You!'))
   }
   );
-
-  function init() {}
-
-// Function call to initialize app
-init();
-  
