@@ -1,6 +1,7 @@
 const fs = require('fs');
 const inquirer = require('inquirer');
 
+//this prompts the questions in the terminal. Inquirer handles the inputs.
 inquirer
   .prompt([
     {
@@ -53,8 +54,11 @@ inquirer
 
   ])
   .then((response) => {
+
+    // deconstruction of the input responses
     const {title, description, installation, usage, contributions, license, test, GitHub, email} = response
 
+    //creates markdown file with the responses 
     fs.writeFile('README.md', `
 # ${title}
 
@@ -98,6 +102,8 @@ ${test}
 
 Have additional questions? Shoot me an email at ${email}.
     `
+
+    //if there's an error, show error : if not, show message
     , (err) => err ? console.error(err) : console.log('Thank You!'))
   }
   );
